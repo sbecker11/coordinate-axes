@@ -1,9 +1,7 @@
 import * as THREE from 'three';
-import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
-import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
 
-// Create planes for each axis and text labels for each axis
-export function createCoordinateGeometry(scene, useTextMeshes=false) {
+// Create planes and grids for each coordinate axis
+export function createCoordinateGeometry(scene) {
 
     try {
         const planeSize = 10;
@@ -63,12 +61,6 @@ export function createCoordinateGeometry(scene, useTextMeshes=false) {
         xCone.rotation.z = -Math.PI / 2;
         scene.add(xCone);
 
-        if (useTextMeshes) {
-            const textMeshX = createTextMesh('X', { x: axisLength + coneHeight + 1, y: 0, z: 0 }, 0xff0000);
-            textMeshes.push(textMeshX);
-            scene.add(textMeshX);
-        }
-
         // Y-axis (green)
         const yAxisGeometry = new THREE.CylinderGeometry(axisRadius, axisRadius, axisLength * 2 + coneHeight, 32);
         const yAxisMaterial = new THREE.MeshPhongMaterial({ color: 0x00ff00 });
@@ -79,12 +71,6 @@ export function createCoordinateGeometry(scene, useTextMeshes=false) {
         const yCone = new THREE.Mesh(yConeGeometry, yAxisMaterial);
         yCone.position.y = axisLength + coneHeight / 2;
         scene.add(yCone);
-
-        if (useTextMeshes) {
-            const textMeshY = createTextMesh('Y', { x: 0, y: axisLength + coneHeight + 1, z: 0 }, 0x00ff00);
-            textMeshes.push(textMeshY);
-            scene.add(textMeshY);
-        }
 
         // Z-axis (blue)
         const zAxisGeometry = new THREE.CylinderGeometry(axisRadius, axisRadius, axisLength * 2 + coneHeight, 32);
@@ -99,33 +85,8 @@ export function createCoordinateGeometry(scene, useTextMeshes=false) {
         zCone.rotation.x = Math.PI / 2;
         scene.add(zCone);
     
-        if ( useTextMeshes ) {
-            const textMeshZ = createTextMesh('Z', { x: 0, y: 0, z: axisLength + coneHeight + 1 }, 0x0000ff);
-            textMeshes.push(textMeshZ);
-            scene.add(textMeshZ);
-        }
-
     } catch (error) {
-        console.error('Error in createPlanesAndAxes', error);
+        console.error('Error in createCoordinateGeometry', error);
     }
 }
 
-// Function to create and return a text mesh
-function createTextMesh(label, position, color) {
-    const loader = new THREE.FontLoader();
-    loader.load('fonts/helvetiker_regular.typeface.json', function (font) {
-        const textGeometry = new THREE.TextGeometry(label, {
-            font: font,
-            size: 1,
-            height: 0.1,
-        });
-        const textMaterial = new THREE.MeshBasicMaterial({ color: color });
-        const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-
-        // Position the text mesh near the corresponding axis cone
-        textMesh.position.set(position.x, position.y, position.z);
-
-        // Return the text mesh
-        return textMesh;
-    });
-}

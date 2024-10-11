@@ -19,7 +19,7 @@ export function createLightsAndCamera(scene, camera, renderer) {
         scene.add(ambientLight);
     
         // Set up camera position
-        camera.position.set(15, 15, 15);
+        camera.position.set(7, 7, 7);
         camera.lookAt(0, 0, 0);
     
         // Set up OrbitControls
