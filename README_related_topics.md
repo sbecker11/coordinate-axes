@@ -50,14 +50,15 @@ In contrast, the Python stack has app frameworks that use the same front-end ass
 * Laravel and Sympfony: popular PHP frameworks for building web applications.   
 * Composer a dependency manager for PHP, similar to npm for JavaScript or pip for Python.
 
-#### WordPress is a content management system (CMS) built on PHP. It is not a framework or a dependency manager, but rather a full-fledged application that provides a platform for creating and managing websites, blogs, and other types of content.  
+#### WordPress
+WordPress is a content management system (CMS) built on PHP. It is not a framework or a dependency manager, but rather a full-fledged application that provides a platform for creating and managing websites, blogs, and other types of content.  
 
 ## Three.js:  
 This example JavaScript app uses the Three.js library, which lets you create and view 3D models in your browser. 
 
 #### Three.js alternatives include:    
 * Babylon.js: A powerful, open-source 3D engine that supports WebGL and WebGPU. It provides a comprehensive set of features for creating complex 3D scenes and games.  
-*  A-Frame: A web framework for building virtual reality (VR) experiences. It is built on top of Three.js and provides an easy-to-use, declarative HTML-like syntax.  
+*  A-Frame: A web framework for building virtual reality (VR) Wexperiences. It is built on top of Three.js and provides an easy-to-use, declarative HTML-like syntax.  
 *  PlayCanvas: A game engine that provides a visual development environment and a powerful JavaScript API for creating 3D content.  
 *  p5.js: A JavaScript library that makes it easy to create 3D graphics and interactive content. It is built on top of WebGL and provides a simple API for drawing and animating 3D objects.  
 
