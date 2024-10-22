@@ -56,7 +56,8 @@ coordinate-axes/
 ├── package.json
 ├── src
 │   ├── coordinateGeometry.js
-│   ├── lightsAndCamera.js
+│   ├── lights.js
+│   ├── camera.js
 │   ├── main.js
 │   └── webSocketClient.js
 └── vite.config.js
@@ -100,9 +101,9 @@ The newly opened browser window should show a black background with X, Y, Z coor
 
 The 3-D scene, camera, lights, and model are created using the Three.js javascript library. The library for the Vite client is listed as `"three": "^0.158.0"` in the `dependency` section of `package.json`. 
 
-The application's source code that creates geometry, camera, and lights are found as create functions in `src/coordinateGeometry.js`and `src/lightsAndCamera.js. `
+The application's source code that creates geometry, camera, and lights are found as create functions in `src/lights.js`, `src/camera.js` and ``src/coordinateGeometry.js`.
 
-The`src/main.js`file, which is referenced from `index.html` has the starter function, `initialize()`and the `animate()` function. The `initialize()` function calls the create functions mentioned above. Once the scene is created, it starts the animation loop using`animate()`. 
+The`src/main.js`file, which is referenced from `index.html` has the starter function, `initialize()`and the `animate()` function. The `initialize()` function creates the `canvas`, `scene` and `renderer` and then calls the create functions from the import files listed above above. Once the scene is created, it starts the animation loop using`animate()`. 
 
 Front-end source code assets, like `index.html` and the JavaScript files are loaded into the browser . But thanks to Vite's HMR (Hot Module Replacement) feature, the Vite server detects any changes made to the original source code files, and sends them directly to the Vite client running in the browser. The Vite client updates the local copy of the assets and you can see the changes immediately in the browser window. 
 
@@ -127,12 +128,12 @@ Open the browser's 'View/Developer/Javascript Console' option to see the console
 
 When you hit ('q' + enter), or just use ('Ctrl' + c), in the Vite server's main menu, the Vite server will stop running. 
 
-The browser's javascript console view should show connection closed errors that look like this:
+The browser's javascript console view will show connection closed errors that look like this:
 ``` chrome
 WebSocket connection closed
 webSocketClient.js:22 Retrying connection in 2 seconds... (Attempt 5/5)
 ```
-This happens because the app running on the browser, continues to run ,and tries to reconnect to the Vite Server on port 3000 every 2 seconds. 
+This happens because the app running on the browser, continues to run and tries to reconnect to the Vite Server on port 3000 every 2 seconds. 
 
 To kill the client, either close the browser page, or do a hard refresh (Cmd+r) on the page.  
 
@@ -145,8 +146,8 @@ GitHub Pages is a static site hosting service provided by GitHub. It allows you 
 - **Free Hosting**: Host static websites directly from your GitHub repository for free.  
 - **Custom Domains**: Use your own domain name for your GitHub Pages site.  
 - **HTTPS Support**: Secure your site with HTTPS.  
-- **Automatic Deployment**: Automatically deploy your site when you push changes to your repository.  
-- **ekyll Integration**: Supports Jekyll, a static site generator, for easy site creation and management.  
+- **Automatic Deployment**: Automatically deploy your site when you push changes to your GitHub repository.  
+- **Jekyll Integration**: Supports Jekyll, a static site generator, for easy site creation and management.  
 
 
 ### Deploying to GitHub Pages
@@ -201,9 +202,11 @@ npm run predeploy
 npm run deploy
 ```
 a. predeploy  
-The `predeploy` script takes the static content from the project's root folder, from the `src` folder and from the library files in `node_modules` and transpiles and bundles them into front-end asset files that it stores in the `dist` directory.
+The `predeploy` script takes the static content from the project's root folder, from the `src` folder and from the library files in `node_modules` and transpiles and bundles them into front-end asset files that it stores in the `/dist` directory.
 b. deploy
-The `deploy` script runs the `gh-pages -d dist` command, which deploys the contents of the `dist` directory to the`gh-pages` branch of your GitHub repository. This makes your site available at `https://<username>.github.io/<my-repo>/`.
+The `deploy` script runs the `gh-pages -d dist` command, which deploys the contents of the `/dist` directory to the`gh-pages` branch of your GitHub repository. This makes your site available at `https://<username>.github.io/<my-repo>/`. 
+
+You so not need to checkout the `gh-pages` branch to run `npm run predeploy` and `npm run deploy` scripts. Your latest work is deployed regardless of its status. So care must be taken. Test your code locally before deploying it to github pages.
 
 7. **Verify Deployment**:  
 a. Open your web browser and go to the URL:  
@@ -216,3 +219,53 @@ To see live output from the app running on your browser.
 ## Summary  
 
 When the app is running from GitHub Pages, it is served as static files generated by the Vite build process. There is no Vite server running in this scenario. The Vite server is only used during development to provide features like Hot Module Replacement (HMR).
+ 
+
+## Recent additions: EsLint and Debugging
+
+### ESLint  
+ESLint is a static code analysis tool used to identify and fix problems in the JavaScript code. ESLint-VSCode integration offers:   
+1. Real-Time Linting: The ESLint extension provides real-time linting as you type, highlighting issues directly in the VSCode editor.  
+2. Problems View: Linting errors and warnings are displayed in the Problems view, allowing you to see all issues in your project at a glance.  
+3. Code Actions: The extension provides code actions (quick fixes) for certain types of issues, which you can apply directly from the editor. 
+
+#### ESLint VSCode integration:  
+Install the VSCode extension named "ESLint" from Microsoft, with the tagline "Integrates ESLint JavaScript into VS Code." This adds ESLint configurations to the `/.vscode/settings.json` file.  
+ 
+#### ESLint command line usage:  
+To run eslint from the command line, first go to project root and install it using:  
+
+```zsh
+npm install eslint --save-dev
+```
+Then to run it against the project use this from project root:  
+```zsh
+npx eslint .
+```
+Local ESLint configurations are defined in `/eslint.config.js`
+
+### Client-Side Debugging:  
+The `/.vscode/launch.json` file contains a launch configuration named             "launch Vite App on 3000 for client-side debugging on Chrome", 
+
+```json
+    {
+        "name": "launch Vite App on 3000 for client-side debugging on Chrome",
+        "request": "launch",
+        "type": "chrome",
+        "url": "http://localhost:3000",
+        "webRoot": "${workspaceFolder}",
+        "preLaunchTask": "npm: dev",
+        "cwd": "${workspaceFolder}"
+    }
+```
+
+It does the following:
+1. Starts the Vite Development Server: The preLaunchTask runs `npm run dev`, which starts the Vite development server.  
+2. Opens the Application in Chrome: The configuration launches Chrome and navigates to http://localhost:3000, where the Vite server is serving the client-side application.  
+3. Enables Client-Side Debugging: Breakpoints and debug controls from VSCode are applied to the client-side JavaScript code running in the browser.  
+
+The `prelaunchTask` used in this launch configuration is defined in `/.vscode/tasks.json` to start Vite in a local terminal. When running in development server mode Vite has its own command-line interface for starting, stopping the server. 
+
+The `tasks.json` file also has a problem matcher configuration, which is used by VSCode to parse the output of a task and detect issues, such as TypeScript errors and warning, and displays them in the Problems View in VSCode.
+
+

@@ -7,7 +7,6 @@ import { CopyShader } from 'three/examples/jsm/shaders/CopyShader.js';
 import { createCameraControls } from './camera.js';
 import { createLights } from './lights.js';
 import { createCoordinateGeometry } from './coordinateGeometry.js';
-// import { createBox } from './box.js';
 
 // Create a canvas and append it to the document
 const canvas = document.createElement('canvas');
@@ -16,7 +15,7 @@ canvas.height = window.innerHeight;
 document.body.appendChild(canvas);
 
 // Create a WebGL renderer
-const renderer = new THREE.WebGLRenderer({ canvas: canvas });
+const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 
 // Disable autoclear, we do this manually in our animation loop.
@@ -27,6 +26,21 @@ const scene = new THREE.Scene();
 
 // Create a camera
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+// Update the camera and renerer on window resize
+window.addEventListener('resize', onWindowResize, false);
+function onWindowResize() {
+  // Update canvas size
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  // Update renderer size
+  renderer.setSize(window.innerWidth, window.innerHeight);
+
+  // Update camera aspect ratio and projection matrix
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+}
 
 // Create camera controls
 let controls = createCameraControls(camera, renderer);
