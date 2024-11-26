@@ -6,11 +6,12 @@ export function createCoordinateGeometry(scene) {
     try {
         const planeSize = 10;
         const gridDivisions = 10;
+        const opacity = 0.95;
 
         // X-axis plane (red)
         const xPlane = new THREE.Mesh(
         new THREE.PlaneGeometry(planeSize, planeSize),
-        new THREE.MeshPhongMaterial({ color: 0xff0000, side: THREE.DoubleSide, transparent: true, opacity: 0.5 })
+        new THREE.MeshPhongMaterial({ color: 0xff0000, side: THREE.DoubleSide, transparent: true, opacity: opacity })
         );
         xPlane.rotation.y = Math.PI / 2;
         scene.add(xPlane);
@@ -18,7 +19,7 @@ export function createCoordinateGeometry(scene) {
         // Y-axis plane (green)
         const yPlane = new THREE.Mesh(
         new THREE.PlaneGeometry(planeSize, planeSize),
-        new THREE.MeshPhongMaterial({ color: 0x00ff00, side: THREE.DoubleSide, transparent: true, opacity: 0.5 })
+        new THREE.MeshPhongMaterial({ color: 0x00ff00, side: THREE.DoubleSide, transparent: true, opacity: opacity })
         );
         yPlane.rotation.x = Math.PI / 2;
         scene.add(yPlane);
@@ -26,7 +27,7 @@ export function createCoordinateGeometry(scene) {
         // Z-axis plane (blue)
         const zPlane = new THREE.Mesh(
         new THREE.PlaneGeometry(planeSize, planeSize),
-        new THREE.MeshPhongMaterial({ color: 0x0000ff, side: THREE.DoubleSide, transparent: true, opacity: 0.5 })
+        new THREE.MeshPhongMaterial({ color: 0x0000ff, side: THREE.DoubleSide, transparent: true, opacity: opacity })
         );
         scene.add(zPlane);
 
