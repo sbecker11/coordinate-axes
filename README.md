@@ -1,12 +1,11 @@
 # the coordinate-axes app  
 
-This JavaScript app uses the Vite and Three.js libraries to create a single-page web application that can be deployed to and hosted by GitHub pages.  
+
+<img src="media/coordinate-axes-v1.png" alt="coordinate-axes" width="50%" height="50%">
 
 This README file has instructions for setup, development, and deployment.  
 
 See [README-related-topics.md](README-related-topics.md) to review topics related to Vite and Three.js.  
-
-<img src="media/coordinate-axes-v1.png">
 
 ## How to create a JavaScript app using Vite and Three.js
 

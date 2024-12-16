@@ -14,7 +14,7 @@ export function createLights(scene) {
         scene.add(directionalLight2);
     
         // Add ambient light to ensure all sides of planes are visible
-        const ambientLight = new THREE.AmbientLight(0xffffff);
+        const ambientLight = new THREE.AmbientLight(0xffffff, 1.0);
         scene.add(ambientLight);
     
     } catch (error) {
