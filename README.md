@@ -1,8 +1,8 @@
 # the coordinate-axes app  
 
-<a href="https://sbecker11.github.io/coordinate-axes/" target="_blank" rel="noopener noreferrer"><img src="media/coordinate-axes-v1.png" alt="coordinate-axes (click to open the live viewer)" width="50%" height="50%"></a>
-
 <!-- SUMMARY:START generated from workspace-linkedin-profile/Projects.json by scripts/build_readme_header.py; edit there -->
+<a href="https://sbecker11.github.io/coordinate-axes/" target="_blank" rel="noopener noreferrer"><img src="media/coordinate-axes-v1.png" alt="3D coordinate axes"></a>
+
 Three.js + Vite visualization of 3D coordinate axes.
 
 **RunMe:** [https://sbecker11.github.io/coordinate-axes/](https://sbecker11.github.io/coordinate-axes/)
