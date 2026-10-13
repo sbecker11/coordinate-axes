@@ -1,5 +1,7 @@
 # the coordinate-axes app  
 
+<img src="media/coordinate-axes-v1.png" alt="coordinate-axes" width="50%" height="50%">
+
 <!-- SUMMARY:START generated from workspace-linkedin-profile/Projects.json by scripts/build_readme_header.py; edit there -->
 Three.js + Vite visualization of 3D coordinate axes.
 
@@ -7,8 +9,6 @@ Three.js + Vite visualization of 3D coordinate axes.
 
 **Skills:** 3D Data Visualization · Computer Graphics · Projective Geometry · Three.js · WebGL · JavaScript · Vite · HTML · Front-End Development · GitHub Pages · Automated Software Testing (JUnit/Jest/Vitest/PyTest)
 <!-- SUMMARY:END -->
-
-<img src="media/coordinate-axes-v1.png" alt="coordinate-axes" width="50%" height="50%">
 
 This README file has instructions for setup, development, and deployment.  
 
@@ -273,5 +273,3 @@ It does the following:
 The `prelaunchTask` used in this launch configuration is defined in `/.vscode/tasks.json` to start Vite in a local terminal. When running in development server mode Vite has its own command-line interface for starting, stopping the server. 
 
 The `tasks.json` file also has a problem matcher configuration, which is used by VSCode to parse the output of a task and detect issues, such as TypeScript errors and warning, and displays them in the Problems View in VSCode.
-
-
