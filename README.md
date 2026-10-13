@@ -1,5 +1,12 @@
 # the coordinate-axes app  
 
+<!-- SUMMARY:START generated from workspace-linkedin-profile/Projects.json by scripts/build_readme_header.py; edit there -->
+Three.js + Vite visualization of 3D coordinate axes.
+
+**RunMe:** [https://sbecker11.github.io/coordinate-axes/](https://sbecker11.github.io/coordinate-axes/)
+
+**Skills:** 3D Data Visualization · Computer Graphics · Projective Geometry · Three.js · WebGL · JavaScript · Vite · HTML · Front-End Development · GitHub Pages · Automated Software Testing (JUnit/Jest/Vitest/PyTest)
+<!-- SUMMARY:END -->
 
 <img src="media/coordinate-axes-v1.png" alt="coordinate-axes" width="50%" height="50%">
 
