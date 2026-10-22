@@ -15,10 +15,26 @@
             height: 100vh;
             background-color: #f0f0f0;
         }
+        #axis-notation {
+            position: fixed;
+            bottom: 16px;
+            left: 0;
+            right: 0;
+            z-index: 2;
+            margin: 0;
+            pointer-events: none;
+            text-align: center;
+            font-family: system-ui, sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            color: #f0f0f0;
+        }
     </style>
 </head>
 <body>
     <div id="app"></div>
+    <p id="axis-notation">Drag mouse to rotate the 3D coordinate axes</p>
     <script type="module" src="/src/main.js"></script>
 </body>
 </html>
